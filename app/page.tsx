@@ -6,86 +6,112 @@ import {
   Palette,
   ArrowRight,
   Sparkles,
+  Heart,
+  Star,
 } from "lucide-react";
 
 const features = [
   {
     icon: Zap,
     title: "Quick Add",
-    desc: "Add expenses in seconds. Amount, category, done.",
+    desc: "Add expenses in seconds. Amount, category, done. Super easy!",
+    emoji: "⚡",
   },
   {
     icon: PieChart,
     title: "Visual Insights",
-    desc: "Beautiful charts showing where your money goes.",
+    desc: "Beautiful charts showing where your money goes. So pretty!",
+    emoji: "🍩",
   },
   {
     icon: Palette,
     title: "Your Style",
     desc: "Custom colors, dark mode, and a cute minimalist design.",
+    emoji: "🎨",
   },
 ];
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-bg-primary">
+    <div className="min-h-screen bg-gradient-cute overflow-hidden relative">
+      {/* Floating decorative blobs */}
+      <div className="absolute top-20 left-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl animate-blob pointer-events-none" />
+      <div className="absolute top-40 right-10 w-48 h-48 bg-pink-300/10 rounded-full blur-3xl animate-blob pointer-events-none" style={{ animationDelay: "2s" }} />
+      <div className="absolute bottom-20 left-1/3 w-56 h-56 bg-accent/5 rounded-full blur-3xl animate-blob pointer-events-none" style={{ animationDelay: "4s" }} />
+
       {/* Nav */}
-      <header className="flex items-center justify-between px-6 py-4 max-w-5xl mx-auto">
+      <header className="relative flex items-center justify-between px-6 py-4 max-w-5xl mx-auto">
         <div className="flex items-center gap-2.5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent text-white">
-            <Wallet className="h-4 w-4" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-accent text-white shadow-lg shadow-accent/25 animate-bounce-gentle">
+            <Wallet className="h-5 w-5" />
           </div>
-          <span className="text-lg font-bold text-text-primary font-display">
+          <span className="text-xl font-bold text-text-primary font-display">
             SpendWise
           </span>
         </div>
         <Link
           href="/auth/login"
-          className="px-4 py-2 rounded-[var(--radius-button)] bg-accent text-white text-sm font-medium hover:bg-accent-dark transition-colors"
+          className="px-5 py-2.5 rounded-full bg-gradient-accent text-white text-sm font-semibold hover:shadow-lg hover:shadow-accent/25 transition-all hover:scale-105 active:scale-95"
         >
           Get Started
         </Link>
       </header>
 
       {/* Hero */}
-      <section className="px-6 pt-16 pb-20 max-w-3xl mx-auto text-center">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium mb-6">
-          <Sparkles className="h-3 w-3" />
-          Simple expense tracking for Gen Z
+      <section className="relative px-6 pt-20 pb-24 max-w-3xl mx-auto text-center">
+        {/* Floating emojis */}
+        <div className="absolute top-8 left-12 text-3xl animate-float opacity-40 pointer-events-none select-none">💰</div>
+        <div className="absolute top-16 right-16 text-2xl animate-float-slow opacity-30 pointer-events-none select-none" style={{ animationDelay: "1s" }}>✨</div>
+        <div className="absolute bottom-16 left-20 text-2xl animate-float opacity-30 pointer-events-none select-none" style={{ animationDelay: "3s" }}>🌸</div>
+        <div className="absolute bottom-8 right-24 text-3xl animate-wiggle opacity-30 pointer-events-none select-none">💜</div>
+
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-semibold mb-8">
+          <Sparkles className="h-3.5 w-3.5" />
+          Simple & cute expense tracking
+          <Heart className="h-3 w-3 fill-current" />
         </div>
 
-        <h1 className="text-4xl sm:text-5xl font-bold text-text-primary font-display leading-tight mb-4">
+        <h1 className="text-5xl sm:text-6xl font-bold text-text-primary font-display leading-tight mb-5">
           Know where your
           <br />
-          <span className="text-accent">money goes</span>
+          <span className="bg-gradient-to-r from-accent via-pink-500 to-accent bg-clip-text text-transparent">
+            money goes
+          </span>
+          <span className="inline-block ml-2 animate-wiggle">💸</span>
         </h1>
 
-        <p className="text-text-secondary text-base sm:text-lg max-w-md mx-auto mb-8">
+        <p className="text-text-secondary text-base sm:text-lg max-w-md mx-auto mb-10 leading-relaxed">
           Track spending, set budgets, and see beautiful insights.
-          Minimalist, cute, and made just for you.
+          Minimalist, adorable, and made just for you ~
         </p>
 
         <Link
           href="/auth/login"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-[var(--radius-button)] bg-accent text-white text-sm font-medium hover:bg-accent-dark transition-all hover:gap-3 shadow-lg shadow-accent/25"
+          className="group inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-accent text-white text-sm font-semibold shadow-xl shadow-accent/25 hover:shadow-2xl hover:shadow-accent/30 transition-all hover:scale-105 active:scale-95"
         >
+          <Star className="h-4 w-4 fill-current group-hover:animate-spin" />
           Start Tracking
-          <ArrowRight className="h-4 w-4" />
+          <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
         </Link>
+
+        <p className="text-xs text-text-secondary/50 mt-4">
+          Free forever ~ No credit card needed
+        </p>
       </section>
 
       {/* Features */}
-      <section className="px-6 pb-20 max-w-4xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {features.map(({ icon: Icon, title, desc }) => (
+      <section className="relative px-6 pb-24 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          {features.map(({ icon: Icon, title, desc, emoji }, i) => (
             <div
               key={title}
-              className="rounded-[var(--radius-card)] bg-bg-secondary border border-border/50 p-6 shadow-soft hover:shadow-hover transition-shadow"
+              className="group rounded-[var(--radius-card)] bg-bg-secondary/80 backdrop-blur-sm border border-border/50 p-7 shadow-soft hover:shadow-hover hover:-translate-y-1 transition-all duration-300"
+              style={{ animationDelay: `${i * 0.1}s` }}
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10 text-accent mb-4">
-                <Icon className="h-5 w-5" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-accent/10 text-2xl mb-4 group-hover:animate-wiggle">
+                {emoji}
               </div>
-              <h3 className="text-sm font-semibold text-text-primary mb-1">
+              <h3 className="text-sm font-bold text-text-primary mb-1.5 font-display">
                 {title}
               </h3>
               <p className="text-xs text-text-secondary leading-relaxed">
@@ -96,10 +122,40 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Cute CTA section */}
+      <section className="relative px-6 pb-20 max-w-2xl mx-auto text-center">
+        <div className="rounded-[2rem] bg-gradient-accent p-10 shadow-2xl shadow-accent/20 relative overflow-hidden">
+          {/* Decorative circles */}
+          <div className="absolute -top-6 -right-6 w-24 h-24 bg-white/10 rounded-full" />
+          <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-white/5 rounded-full" />
+          <div className="absolute top-4 left-8 text-white/20 animate-sparkle">
+            <Star className="h-4 w-4 fill-current" />
+          </div>
+          <div className="absolute bottom-6 right-12 text-white/20 animate-sparkle" style={{ animationDelay: "1s" }}>
+            <Sparkles className="h-5 w-5" />
+          </div>
+
+          <p className="text-3xl mb-2">🐷</p>
+          <h2 className="text-xl font-bold text-white font-display mb-2">
+            Ready to save smarter?
+          </h2>
+          <p className="text-sm text-white/70 mb-6">
+            Join SpendWise and take control of your spending ~
+          </p>
+          <Link
+            href="/auth/login"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-accent text-sm font-bold shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all"
+          >
+            Let&apos;s Go!
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="px-6 py-8 text-center border-t border-border/50">
+      <footer className="px-6 py-8 text-center border-t border-border/30">
         <p className="text-xs text-text-secondary">
-          Made with care for your wallet. SpendWise 2026.
+          Made with <Heart className="inline h-3 w-3 text-pink-400 fill-pink-400 mx-0.5" /> for your wallet. SpendWise 2026.
         </p>
       </footer>
     </div>

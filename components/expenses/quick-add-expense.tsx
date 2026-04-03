@@ -5,7 +5,7 @@ import { Modal } from "@/components/ui/modal";
 import { Button } from "@/components/ui/button";
 import { CategoryPicker } from "./category-picker";
 import { useExpenses } from "@/hooks/use-expenses";
-import { CalendarDays, StickyNote } from "lucide-react";
+import { CalendarDays, StickyNote, Sparkles } from "lucide-react";
 
 interface QuickAddExpenseProps {
   open: boolean;
@@ -50,12 +50,12 @@ export function QuickAddExpense({ open, onClose }: QuickAddExpenseProps) {
   const isValid = amount && parseFloat(amount) > 0 && categoryId;
 
   return (
-    <Modal open={open} onClose={onClose} title="Add Expense">
+    <Modal open={open} onClose={onClose} title="Add Expense ✨">
       <div className="flex flex-col gap-5">
         {/* Amount Input */}
-        <div className="text-center">
-          <div className="flex items-center justify-center gap-1">
-            <span className="text-xl font-bold text-text-secondary">MMK</span>
+        <div className="text-center py-3 rounded-2xl bg-bg-tertiary/50">
+          <div className="flex items-center justify-center gap-2">
+            <span className="text-lg font-bold text-text-secondary/60">MMK</span>
             <input
               ref={amountRef}
               type="number"
@@ -65,15 +65,15 @@ export function QuickAddExpense({ open, onClose }: QuickAddExpenseProps) {
               placeholder="0"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className="text-4xl font-bold text-text-primary bg-transparent outline-none text-center w-48 placeholder:text-text-secondary/30 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              className="text-4xl font-bold text-text-primary bg-transparent outline-none text-center w-48 placeholder:text-text-secondary/20 font-display [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
             />
           </div>
         </div>
 
         {/* Category Picker */}
         <div>
-          <label className="text-xs font-medium text-text-secondary mb-2 block">
-            Category
+          <label className="text-xs font-semibold text-text-secondary mb-2 block font-display">
+            Pick a category ~
           </label>
           <CategoryPicker
             categories={categories}
@@ -85,20 +85,20 @@ export function QuickAddExpense({ open, onClose }: QuickAddExpenseProps) {
         {/* Date & Note toggles */}
         <div className="flex gap-2">
           <div className="flex items-center gap-2 flex-1">
-            <CalendarDays className="h-4 w-4 text-text-secondary" />
+            <CalendarDays className="h-4 w-4 text-accent/60" />
             <input
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="text-sm text-text-primary bg-transparent outline-none border border-border rounded-[var(--radius-input)] px-2.5 py-1.5 flex-1"
+              className="text-sm text-text-primary bg-bg-tertiary/50 outline-none border border-border/50 rounded-xl px-3 py-2 flex-1 focus:border-accent/50 transition-colors"
             />
           </div>
           <button
             onClick={() => setShowNote(!showNote)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-[var(--radius-input)] border text-sm transition-colors ${
+            className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl border text-sm font-medium transition-all ${
               showNote
-                ? "border-accent text-accent bg-accent/5"
-                : "border-border text-text-secondary hover:border-accent/50"
+                ? "border-accent text-accent bg-accent/5 scale-[1.02]"
+                : "border-border/50 text-text-secondary bg-bg-tertiary/50 hover:border-accent/30"
             }`}
           >
             <StickyNote className="h-3.5 w-3.5" />
@@ -110,10 +110,10 @@ export function QuickAddExpense({ open, onClose }: QuickAddExpenseProps) {
         {showNote && (
           <input
             type="text"
-            placeholder="What was this for?"
+            placeholder="What was this for? 📝"
             value={note}
             onChange={(e) => setNote(e.target.value)}
-            className="w-full rounded-[var(--radius-input)] border border-border bg-bg-tertiary px-3.5 py-2.5 text-sm text-text-primary placeholder:text-text-secondary/50 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
+            className="w-full rounded-xl border border-border/50 bg-bg-tertiary/50 px-4 py-3 text-sm text-text-primary placeholder:text-text-secondary/40 outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/10 transition-all"
           />
         )}
 
@@ -122,8 +122,9 @@ export function QuickAddExpense({ open, onClose }: QuickAddExpenseProps) {
           onClick={handleSubmit}
           disabled={!isValid || saving}
           size="lg"
-          className="w-full"
+          className="w-full rounded-full shadow-lg shadow-accent/20 font-display"
         >
+          <Sparkles className="h-4 w-4" />
           {saving ? "Adding..." : "Add Expense"}
         </Button>
       </div>

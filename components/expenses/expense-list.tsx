@@ -2,7 +2,6 @@
 
 import { AnimatePresence } from "motion/react";
 import { ExpenseCard } from "./expense-card";
-import { Receipt } from "lucide-react";
 import type { Expense } from "@/lib/types";
 
 interface ExpenseListProps {
@@ -18,7 +17,8 @@ export function ExpenseList({ expenses, loading, onDelete }: ExpenseListProps) {
         {[...Array(5)].map((_, i) => (
           <div
             key={i}
-            className="h-16 rounded-[var(--radius-button)] bg-bg-tertiary animate-pulse"
+            className="h-16 rounded-[var(--radius-button)] bg-bg-tertiary/50 animate-pulse"
+            style={{ animationDelay: `${i * 0.1}s` }}
           />
         ))}
       </div>
@@ -28,14 +28,12 @@ export function ExpenseList({ expenses, loading, onDelete }: ExpenseListProps) {
   if (expenses.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-bg-tertiary mb-4">
-          <Receipt className="h-7 w-7 text-text-secondary/50" />
-        </div>
-        <p className="text-sm font-medium text-text-primary mb-1">
-          No expenses yet
+        <div className="text-5xl mb-4 animate-float">🐣</div>
+        <p className="text-sm font-bold text-text-primary font-display mb-1">
+          No expenses yet!
         </p>
         <p className="text-xs text-text-secondary">
-          Tap the + button to add your first expense!
+          Tap the + button to add your first expense ~
         </p>
       </div>
     );
@@ -50,10 +48,10 @@ export function ExpenseList({ expenses, loading, onDelete }: ExpenseListProps) {
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-5">
       {Object.entries(grouped).map(([date, dateExpenses]) => (
         <div key={date}>
-          <p className="text-xs font-medium text-text-secondary mb-2 px-1">
+          <p className="text-xs font-semibold text-text-secondary mb-2 px-1 font-display">
             {new Date(date + "T00:00:00").toLocaleDateString("en-US", {
               weekday: "long",
               month: "short",
