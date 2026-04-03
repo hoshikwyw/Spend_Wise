@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SpendWise
+
+A minimalist, cute expense tracker web app built for Gen Z. Track your spending, set budgets, and see beautiful visual insights — all with a customizable theme.
+
+## Tech Stack
+
+- **Next.js 16** (App Router, TypeScript)
+- **Supabase** (Auth, PostgreSQL, Row Level Security)
+- **Tailwind CSS v4** (CSS variables for dynamic theming)
+- **Recharts** (pie charts, area charts)
+- **Motion** (animations)
+- **Lucide React** (icons)
+
+## Features
+
+- **Google Sign-In** via Supabase OAuth
+- **Quick Add Expense** — bottom sheet modal, minimal friction (amount + category + done)
+- **Smart Categories** — emoji-based categories (Food, Transport, Shopping, etc.)
+- **Visual Dashboard** — donut chart, spending trend, budget progress bar
+- **Monthly Budgets** — set a budget and track your spending against it
+- **Theme Customization** — dark/light/system mode + custom accent color picker
+- **Responsive Design** — sidebar on desktop, bottom tab bar + FAB on mobile
 
 ## Getting Started
 
-First, run the development server:
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Set up Supabase
+
+1. Create a new project at [supabase.com](https://supabase.com)
+2. Copy your **Project URL** and **Anon Key** into `.env.local`:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+### 3. Run the database migration
+
+Copy the contents of `supabase/migrations/001_initial_schema.sql` into the Supabase **SQL Editor** and run it. This creates:
+
+- `profiles` — user profiles (auto-created on signup)
+- `categories` — default + custom expense categories
+- `expenses` — expense records
+- `budgets` — monthly budget amounts
+- `user_preferences` — theme, accent color, currency
+
+### 4. Enable Google OAuth
+
+1. Go to Supabase Dashboard > **Authentication** > **Providers** > enable **Google**
+2. Create OAuth credentials at [Google Cloud Console](https://console.cloud.google.com):
+   - APIs & Services > Credentials > Create OAuth client ID (Web application)
+   - Add redirect URI: `https://<your-project>.supabase.co/auth/v1/callback`
+3. Paste the Client ID and Client Secret into Supabase
+4. Go to **Authentication** > **URL Configuration**:
+   - Site URL: `http://localhost:3000`
+   - Redirect URLs: `http://localhost:3000/auth/callback`
+
+### 5. Run the dev server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/
+  page.tsx                    # Landing page
+  auth/login/page.tsx         # Google sign-in
+  auth/callback/route.ts      # OAuth callback
+  (app)/
+    dashboard/page.tsx        # Charts + summary
+    expenses/page.tsx         # Expense list
+    budget/page.tsx           # Monthly budget
+    settings/page.tsx         # Theme + profile
 
-## Learn More
+components/
+  ui/                         # Button, Input, Card, Modal, ProgressBar, Badge
+  theme/                      # ThemeProvider, ThemeToggle, AccentColorPicker
+  layout/                     # AppShell, Sidebar, BottomNav
+  expenses/                   # QuickAddExpense, ExpenseList, ExpenseCard, CategoryPicker
+  dashboard/                  # SpendingPieChart, SpendingTrendChart, BudgetProgress, MonthlySummaryCard
 
-To learn more about Next.js, take a look at the following resources:
+hooks/                        # useAuth, useExpenses, useBudget, useTheme
+lib/                          # Supabase clients, utils, types, constants
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deploy on [Vercel](https://vercel.com) — add the same environment variables from `.env.local` to your Vercel project settings.
