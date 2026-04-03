@@ -1,6 +1,5 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
 import { formatCurrency } from "@/lib/utils";
 import { Sparkles } from "lucide-react";
 
@@ -14,7 +13,7 @@ export function MonthlySummaryCard({
   expenseCount,
 }: MonthlySummaryCardProps) {
   return (
-    <Card className="bg-gradient-accent text-white border-none relative overflow-hidden">
+    <div className="rounded-[var(--radius-card)] bg-accent-dark text-white p-5 relative overflow-hidden shadow-lg shadow-accent/20">
       {/* Decorative blobs */}
       <div className="absolute -top-8 -right-8 w-28 h-28 bg-white/10 rounded-full" />
       <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-white/5 rounded-full" />
@@ -24,7 +23,7 @@ export function MonthlySummaryCard({
 
       <div className="relative flex items-start justify-between">
         <div>
-          <p className="text-sm text-white/70 font-medium">This Month</p>
+          <p className="text-sm text-white/80 font-medium">This Month</p>
           <p className="text-3xl font-bold mt-1.5 font-display">
             {formatCurrency(totalSpent)}
           </p>
@@ -37,6 +36,6 @@ export function MonthlySummaryCard({
           {totalSpent === 0 ? "🎉" : totalSpent > 500000 ? "😅" : "💰"}
         </div>
       </div>
-    </Card>
+    </div>
   );
 }

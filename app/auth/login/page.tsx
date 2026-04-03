@@ -52,7 +52,7 @@ export default function LoginPage() {
           </p>
 
           {/* Card */}
-          <div className="w-full rounded-[var(--radius-card)] bg-bg-secondary/80 backdrop-blur-sm border border-border/50 p-8 shadow-soft">
+          <div className="w-full rounded-[var(--radius-card)] bg-bg-secondary border border-border/50 p-8 shadow-soft">
             <p className="text-center text-2xl mb-4">🐷</p>
             <button
               onClick={handleGoogleSignIn}

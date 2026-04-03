@@ -85,7 +85,7 @@ export default function ExpensesPage() {
       </div>
 
       {/* Filter tabs */}
-      <div className="flex gap-1.5 p-1 rounded-2xl bg-bg-tertiary/50 mb-5">
+      <div className="flex gap-1.5 p-1 rounded-2xl bg-bg-tertiary mb-5">
         {filterTabs.map(({ value, label, emoji }) => (
           <button
             key={value}
@@ -137,7 +137,7 @@ export default function ExpensesPage() {
           animate={{ opacity: 1, scale: 1 }}
           className="grid grid-cols-3 gap-3 mb-6"
         >
-          <div className="rounded-2xl bg-bg-secondary/80 border border-border/30 p-3.5 text-center">
+          <div className="rounded-2xl bg-bg-secondary border border-border/50 p-3.5 text-center">
             <p className="text-lg font-bold text-text-primary font-display">
               {expenses.length}
             </p>
@@ -145,7 +145,7 @@ export default function ExpensesPage() {
               Expenses
             </p>
           </div>
-          <div className="rounded-2xl bg-bg-secondary/80 border border-border/30 p-3.5 text-center">
+          <div className="rounded-2xl bg-bg-secondary border border-border/50 p-3.5 text-center">
             <p className="text-lg font-bold text-accent font-display">
               {formatCurrency(totalSpent)}
             </p>
@@ -153,7 +153,7 @@ export default function ExpensesPage() {
               Total
             </p>
           </div>
-          <div className="rounded-2xl bg-bg-secondary/80 border border-border/30 p-3.5 text-center">
+          <div className="rounded-2xl bg-bg-secondary border border-border/50 p-3.5 text-center">
             <p className="text-lg font-bold text-text-primary font-display">
               {spendingByCategory.length > 0 ? spendingByCategory[0].emoji : "~"}
             </p>

@@ -29,7 +29,7 @@ export function CategoryPicker({
             "flex items-center gap-2 px-3.5 py-2.5 rounded-full border whitespace-nowrap text-sm font-semibold transition-all duration-200 shrink-0",
             selected === cat.id
               ? "border-accent bg-accent/10 text-accent shadow-sm shadow-accent/10 scale-[1.03]"
-              : "border-border/50 bg-bg-tertiary/50 text-text-secondary hover:border-accent/30 hover:bg-accent/5"
+              : "border-border/50 bg-bg-tertiary text-text-secondary hover:border-accent/30 hover:bg-accent/5"
           )}
         >
           <span className={cn("text-lg", selected === cat.id && "animate-wiggle")}>{cat.emoji}</span>

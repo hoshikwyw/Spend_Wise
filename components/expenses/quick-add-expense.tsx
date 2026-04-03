@@ -53,7 +53,7 @@ export function QuickAddExpense({ open, onClose }: QuickAddExpenseProps) {
     <Modal open={open} onClose={onClose} title="Add Expense ✨">
       <div className="flex flex-col gap-5">
         {/* Amount Input */}
-        <div className="text-center py-3 rounded-2xl bg-bg-tertiary/50">
+        <div className="text-center py-3 rounded-2xl bg-bg-tertiary">
           <div className="flex items-center justify-center gap-2">
             <span className="text-lg font-bold text-text-secondary/60">MMK</span>
             <input
@@ -90,7 +90,7 @@ export function QuickAddExpense({ open, onClose }: QuickAddExpenseProps) {
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="text-sm text-text-primary bg-bg-tertiary/50 outline-none border border-border/50 rounded-xl px-3 py-2 flex-1 focus:border-accent/50 transition-colors"
+              className="text-sm text-text-primary bg-bg-tertiary outline-none border border-border/50 rounded-xl px-3 py-2 flex-1 focus:border-accent/50 transition-colors"
             />
           </div>
           <button
@@ -98,7 +98,7 @@ export function QuickAddExpense({ open, onClose }: QuickAddExpenseProps) {
             className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl border text-sm font-medium transition-all ${
               showNote
                 ? "border-accent text-accent bg-accent/5 scale-[1.02]"
-                : "border-border/50 text-text-secondary bg-bg-tertiary/50 hover:border-accent/30"
+                : "border-border/50 text-text-secondary bg-bg-tertiary hover:border-accent/30"
             }`}
           >
             <StickyNote className="h-3.5 w-3.5" />
@@ -113,7 +113,7 @@ export function QuickAddExpense({ open, onClose }: QuickAddExpenseProps) {
             placeholder="What was this for? 📝"
             value={note}
             onChange={(e) => setNote(e.target.value)}
-            className="w-full rounded-xl border border-border/50 bg-bg-tertiary/50 px-4 py-3 text-sm text-text-primary placeholder:text-text-secondary/40 outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/10 transition-all"
+            className="w-full rounded-xl border border-border/50 bg-bg-tertiary px-4 py-3 text-sm text-text-primary placeholder:text-text-secondary/40 outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/10 transition-all"
           />
         )}
 

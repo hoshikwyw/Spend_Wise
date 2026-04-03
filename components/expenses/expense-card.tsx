@@ -19,7 +19,7 @@ export function ExpenseCard({ expense, onDelete }: ExpenseCardProps) {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, x: -100 }}
-      className="group flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-bg-secondary/80 border border-border/30 hover:border-accent/20 hover:shadow-soft hover:-translate-y-0.5 transition-all duration-300"
+      className="group flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-bg-secondary border border-border/50 hover:border-accent/30 hover:shadow-soft hover:-translate-y-0.5 transition-all duration-300"
     >
       {/* Category emoji */}
       <div

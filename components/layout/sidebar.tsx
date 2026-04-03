@@ -25,7 +25,7 @@ export function Sidebar() {
   };
 
   return (
-    <aside className="hidden md:flex flex-col w-64 border-r border-border/50 bg-bg-secondary/50 backdrop-blur-sm h-screen sticky top-0">
+    <aside className="hidden md:flex flex-col w-64 border-r border-border/50 bg-bg-secondary h-screen sticky top-0">
       {/* Logo */}
       <div className="flex items-center gap-2.5 px-6 py-5 border-b border-border/30">
         <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-accent text-white shadow-lg shadow-accent/20 animate-bounce-gentle">
@@ -54,7 +54,7 @@ export function Sidebar() {
                 "flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold transition-all duration-200",
                 active
                   ? "bg-accent/10 text-accent shadow-sm"
-                  : "text-text-secondary hover:text-text-primary hover:bg-bg-tertiary/60"
+                  : "text-text-secondary hover:text-text-primary hover:bg-bg-tertiary"
               )}
             >
               <span className={cn("text-base", active && "animate-wiggle")}>{emoji}</span>

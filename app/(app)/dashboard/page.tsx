@@ -111,7 +111,7 @@ export default function DashboardPage() {
             <span className="text-sm">📝</span>
           </h2>
           {expenses.length === 0 ? (
-            <div className="rounded-[var(--radius-card)] bg-bg-secondary/80 border border-border/30 p-10 text-center">
+            <div className="rounded-[var(--radius-card)] bg-bg-secondary border border-border/50 p-10 text-center">
               <p className="text-4xl mb-3 animate-bounce-gentle">🐷</p>
               <p className="text-sm font-semibold text-text-primary font-display mb-1">
                 No expenses yet!

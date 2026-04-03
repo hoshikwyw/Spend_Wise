@@ -105,7 +105,7 @@ export default function LandingPage() {
           {features.map(({ icon: Icon, title, desc, emoji }, i) => (
             <div
               key={title}
-              className="group rounded-[var(--radius-card)] bg-bg-secondary/80 backdrop-blur-sm border border-border/50 p-7 shadow-soft hover:shadow-hover hover:-translate-y-1 transition-all duration-300"
+              className="group rounded-[var(--radius-card)] bg-bg-secondary border border-border/50 p-7 shadow-soft hover:shadow-hover hover:-translate-y-1 transition-all duration-300"
               style={{ animationDelay: `${i * 0.1}s` }}
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-accent/10 text-2xl mb-4 group-hover:animate-wiggle">

@@ -114,7 +114,7 @@ body {
 }
 
 .bg-gradient-accent {
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+  background: linear-gradient(135deg, var(--color-accent-dark) 0%, var(--color-accent) 100%);
 }
 
 .bg-gradient-card {
@@ -123,14 +123,14 @@ body {
 
 /* Glassmorphism */
 .glass {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 [data-theme="dark"] .glass {
-  background: rgba(22, 19, 42, 0.7);
-  border: 1px solid rgba(139, 92, 246, 0.1);
+  background: rgba(22, 19, 42, 0.85);
+  border-top: 1px solid rgba(139, 92, 246, 0.1);
 }
 
 /* Smooth scrollbar */

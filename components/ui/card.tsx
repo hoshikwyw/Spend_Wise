@@ -9,7 +9,7 @@ export function Card({ className, hover = false, ...props }: CardProps) {
   return (
     <div
       className={cn(
-        "rounded-[var(--radius-card)] bg-bg-secondary/80 backdrop-blur-sm border border-border/30 shadow-soft p-5",
+        "rounded-[var(--radius-card)] bg-bg-secondary border border-border/50 shadow-soft p-5",
         hover && "transition-all duration-300 hover:shadow-hover hover:-translate-y-0.5",
         className
       )}
