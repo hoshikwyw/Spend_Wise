@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   description:
     "Track your spending, reach your goals. Simple & cute expense tracking designed for you.",
   manifest: "/manifest.json",
+  icons: {
+    icon: { url: "/icons/favicon.svg", type: "image/svg+xml" },
+    apple: "/icons/icon-192.svg",
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
@@ -39,9 +43,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`} suppressHydrationWarning>
-      <head>
-        <link rel="apple-touch-icon" href="/icons/icon-192.svg" />
-      </head>
       <body className="min-h-full flex flex-col font-sans overscroll-none">
         <ThemeProvider>{children}</ThemeProvider>
       </body>

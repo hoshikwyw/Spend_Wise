@@ -1,5 +1,61 @@
-<svg xmlns='http://www.w3.org/2000/svg' width='192' height='192' viewBox='0 0 192 192'>
-  <defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='#7C3AED'/><stop offset='100%' stop-color='#8B5CF6'/></linearGradient></defs>
-  <rect width='192' height='192' rx='42' fill='url(#g)'/>
-  <text x='96' y='130' text-anchor='middle' font-size='100' fill='white' font-weight='bold' font-family='Arial'>S</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#A78BFA"/>
+    </linearGradient>
+    <linearGradient id="coin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FCD34D"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="192" height="192" rx="44" fill="url(#bg)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="158" cy="30" r="26" fill="white" opacity="0.08"/>
+  <circle cx="30" cy="160" r="18" fill="white" opacity="0.06"/>
+
+  <!-- Wallet body -->
+  <rect x="38" y="70" width="116" height="76" rx="16" fill="white"/>
+
+  <!-- Wallet flap -->
+  <path d="M38 86 L38 76 C38 63 48 54 60 54 L132 54 C144 54 154 63 154 76 L154 86" fill="white" stroke="#E9E0FF" stroke-width="1.5"/>
+
+  <!-- Wallet stitching -->
+  <line x1="50" y1="86" x2="106" y2="86" stroke="#DDD6FE" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 3"/>
+
+  <!-- Wallet clasp -->
+  <rect x="122" y="98" width="32" height="24" rx="9" fill="#8B5CF6" opacity="0.15"/>
+  <circle cx="138" cy="110" r="5.5" fill="#8B5CF6" opacity="0.35"/>
+
+  <!-- Card detail -->
+  <rect x="50" y="98" width="56" height="36" rx="6" fill="#F5F3FF" stroke="#E9E0FF" stroke-width="1"/>
+  <rect x="56" y="105" width="22" height="4" rx="2" fill="#C4B5FD"/>
+  <rect x="56" y="113" width="34" height="3" rx="1.5" fill="#DDD6FE"/>
+  <rect x="56" y="120" width="24" height="3" rx="1.5" fill="#EDE9FE"/>
+
+  <!-- Coin (top right) -->
+  <circle cx="144" cy="42" r="20" fill="url(#coin)" stroke="#D97706" stroke-width="1.5"/>
+  <circle cx="144" cy="42" r="15" fill="none" stroke="#D97706" stroke-width="0.8" opacity="0.3"/>
+  <text x="144" y="49" text-anchor="middle" font-size="20" font-weight="bold" font-family="Arial" fill="#92400E">S</text>
+
+  <!-- Coin small (top left) -->
+  <circle cx="56" cy="46" r="12" fill="url(#coin)" stroke="#D97706" stroke-width="1" opacity="0.85"/>
+  <text x="56" y="51" text-anchor="middle" font-size="12" font-weight="bold" font-family="Arial" fill="#92400E">$</text>
+
+  <!-- Sparkles -->
+  <g fill="white" opacity="0.75">
+    <path d="M172 80 L174 86 L180 88 L174 90 L172 96 L170 90 L164 88 L170 86 Z" transform="scale(0.6) translate(105, -15)"/>
+    <path d="M30 104 L32 108 L36 110 L32 112 L30 116 L28 112 L24 110 L28 108 Z" transform="scale(0.55) translate(2, 80)"/>
+  </g>
+
+  <!-- Heart -->
+  <g transform="translate(168, 142) scale(0.18)" fill="white" opacity="0.5">
+    <path d="M0 -10 C-10 -25 -35 -25 -35 -5 C-35 10 -15 25 0 40 C15 25 35 10 35 -5 C35 -25 10 -25 0 -10 Z"/>
+  </g>
+
+  <!-- Bottom text -->
+  <text x="96" y="170" text-anchor="middle" font-size="14" font-weight="800" font-family="Arial, sans-serif" fill="white" opacity="0.9" letter-spacing="2.5">SPENDWISE</text>
 </svg>
