@@ -3,9 +3,10 @@
 import { useState, useRef, useEffect } from "react";
 import { Modal } from "@/components/ui/modal";
 import { Button } from "@/components/ui/button";
+import { DatePicker } from "@/components/ui/date-picker";
 import { CategoryPicker } from "./category-picker";
 import { useExpenses } from "@/hooks/use-expenses";
-import { CalendarDays, StickyNote, Sparkles } from "lucide-react";
+import { StickyNote, Sparkles } from "lucide-react";
 
 interface QuickAddExpenseProps {
   open: boolean;
@@ -71,31 +72,25 @@ export function QuickAddExpense({ open, onClose }: QuickAddExpenseProps) {
         </div>
 
         {/* Category Picker */}
-        <div>
+        <div className="overflow-hidden">
           <label className="text-xs font-semibold text-text-secondary mb-2 block font-display">
             Pick a category ~
           </label>
-          <CategoryPicker
-            categories={categories}
-            selected={categoryId}
-            onSelect={setCategoryId}
-          />
-        </div>
-
-        {/* Date & Note toggles */}
-        <div className="flex gap-2">
-          <div className="flex items-center gap-2 flex-1">
-            <CalendarDays className="h-4 w-4 text-accent/60" />
-            <input
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              className="text-sm text-text-primary bg-bg-tertiary outline-none border border-border/50 rounded-xl px-3 py-2 flex-1 focus:border-accent/50 transition-colors"
+          <div className="mx--1">
+            <CategoryPicker
+              categories={categories}
+              selected={categoryId}
+              onSelect={setCategoryId}
             />
           </div>
+        </div>
+
+        {/* Date & Note */}
+        <div className="flex gap-2">
+          <DatePicker value={date} onChange={setDate} />
           <button
             onClick={() => setShowNote(!showNote)}
-            className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl border text-sm font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl border text-sm font-medium transition-all shrink-0 ${
               showNote
                 ? "border-accent text-accent bg-accent/5 scale-[1.02]"
                 : "border-border/50 text-text-secondary bg-bg-tertiary hover:border-accent/30"

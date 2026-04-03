@@ -45,7 +45,7 @@ export function Modal({ open, onClose, children, className, title }: ModalProps)
             exit={{ y: "100%", opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
             className={cn(
-              "relative w-full sm:max-w-md bg-bg-secondary rounded-t-[2rem] sm:rounded-[var(--radius-card)] p-6 shadow-hover border border-border/50 z-10",
+              "relative w-full sm:max-w-md bg-bg-secondary rounded-t-[2rem] sm:rounded-[var(--radius-card)] p-6 shadow-hover border border-border/50 z-10 overflow-visible",
               className
             )}
           >
