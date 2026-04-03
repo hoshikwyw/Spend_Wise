@@ -14,12 +14,12 @@ export function ThemeToggle() {
   const { mode, setMode } = useTheme();
 
   return (
-    <div className="flex gap-1 rounded-[var(--radius-button)] bg-bg-tertiary p-1">
+    <div className="flex gap-1 rounded-[var(--radius-button)] bg-bg-tertiary p-1 w-full">
       {modes.map(({ value, icon: Icon, label }) => (
         <button
           key={value}
           onClick={() => setMode(value)}
-          className={`flex items-center gap-1.5 rounded-[0.625rem] px-3 py-1.5 text-xs font-medium transition-all ${
+          className={`flex-1 flex items-center justify-center gap-1.5 rounded-[0.625rem] px-2 sm:px-3 py-2 text-xs font-medium transition-all active:scale-95 ${
             mode === value
               ? "bg-bg-secondary text-text-primary shadow-sm"
               : "text-text-secondary hover:text-text-primary"

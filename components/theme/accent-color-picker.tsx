@@ -20,7 +20,7 @@ export function AccentColorPicker() {
       </label>
 
       {/* Preset swatches */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2.5 sm:gap-2">
         {ACCENT_PRESETS.map((preset) => (
           <button
             key={preset.color}
@@ -29,7 +29,7 @@ export function AccentColorPicker() {
               setShowCustom(false);
             }}
             className={cn(
-              "relative h-9 w-9 rounded-xl transition-all duration-200 hover:scale-110",
+              "relative h-10 w-10 sm:h-9 sm:w-9 rounded-xl transition-all duration-200 active:scale-90",
               accentColor === preset.color && "ring-2 ring-offset-2 ring-offset-bg-secondary"
             )}
             style={{
@@ -49,7 +49,7 @@ export function AccentColorPicker() {
         <button
           onClick={() => setShowCustom(!showCustom)}
           className={cn(
-            "relative h-9 w-9 rounded-xl border-2 border-dashed border-border flex items-center justify-center transition-all duration-200 hover:border-accent",
+            "relative h-10 w-10 sm:h-9 sm:w-9 rounded-xl border-2 border-dashed border-border flex items-center justify-center transition-all duration-200 active:scale-90 hover:border-accent",
             !isPreset && "ring-2 ring-offset-2 ring-offset-bg-secondary ring-accent"
           )}
           style={!isPreset ? { backgroundColor: accentColor } : undefined}
@@ -64,7 +64,7 @@ export function AccentColorPicker() {
 
       {/* Custom color input */}
       {showCustom && (
-        <div className="flex items-center gap-2 mt-2">
+        <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 mt-2">
           <input
             type="color"
             value={customColor}

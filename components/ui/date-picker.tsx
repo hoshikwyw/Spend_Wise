@@ -24,7 +24,6 @@ export function DatePicker({ value, onChange }: DatePickerProps) {
   const [viewYear, setViewYear] = useState(selected.getFullYear());
   const [viewMonth, setViewMonth] = useState(selected.getMonth());
 
-  // Close on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) {
@@ -35,7 +34,6 @@ export function DatePicker({ value, onChange }: DatePickerProps) {
     return () => document.removeEventListener("mousedown", handler);
   }, [open]);
 
-  // Sync view to selected when opening
   useEffect(() => {
     if (open) {
       setViewYear(selected.getFullYear());
@@ -68,21 +66,17 @@ export function DatePicker({ value, onChange }: DatePickerProps) {
     setOpen(false);
   };
 
-  // Build calendar grid
   const firstDay = new Date(viewYear, viewMonth, 1).getDay();
   const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
   const prevMonthDays = new Date(viewYear, viewMonth, 0).getDate();
 
   const cells: { day: number; current: boolean }[] = [];
-  // Previous month trailing days
   for (let i = firstDay - 1; i >= 0; i--) {
     cells.push({ day: prevMonthDays - i, current: false });
   }
-  // Current month
   for (let d = 1; d <= daysInMonth; d++) {
     cells.push({ day: d, current: true });
   }
-  // Next month leading days
   const remaining = 7 - (cells.length % 7);
   if (remaining < 7) {
     for (let d = 1; d <= remaining; d++) {
@@ -96,27 +90,26 @@ export function DatePicker({ value, onChange }: DatePickerProps) {
   const displayDate = selected.toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
-    year: "numeric",
   });
 
   return (
-    <div ref={ref} className="relative flex-1">
+    <div ref={ref} className="relative flex-1 min-w-0">
       {/* Trigger */}
       <button
         type="button"
         onClick={() => setOpen(!open)}
         className={cn(
-          "flex items-center gap-2.5 w-full px-3.5 py-2.5 rounded-xl border text-sm font-medium transition-all",
+          "flex items-center gap-2 w-full px-3 py-2.5 rounded-xl border text-sm font-medium transition-all",
           open
             ? "border-accent bg-accent/5 text-accent"
             : "border-border/50 bg-bg-tertiary text-text-primary hover:border-accent/30"
         )}
       >
         <CalendarDays className="h-4 w-4 text-accent/60 shrink-0" />
-        <span>{displayDate}</span>
+        <span className="truncate">{displayDate}</span>
       </button>
 
-      {/* Dropdown calendar */}
+      {/* Calendar dropdown — on mobile it opens upward to avoid being cut off by bottom nav */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -124,24 +117,24 @@ export function DatePicker({ value, onChange }: DatePickerProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.95 }}
             transition={{ type: "spring", damping: 25, stiffness: 350 }}
-            className="absolute left-0 right-0 top-full mt-2 z-50 bg-bg-secondary border border-border/50 rounded-2xl shadow-hover p-4"
+            className="absolute left-0 right-0 bottom-full mb-2 sm:bottom-auto sm:top-full sm:mt-2 z-50 bg-bg-secondary border border-border/50 rounded-2xl shadow-hover p-3 sm:p-4 min-w-[260px]"
           >
             {/* Month/Year header */}
-            <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center justify-between mb-2">
               <button
                 type="button"
                 onClick={prevMonth}
-                className="flex h-7 w-7 items-center justify-center rounded-lg text-text-secondary hover:bg-bg-tertiary hover:text-accent transition-all"
+                className="flex h-8 w-8 items-center justify-center rounded-lg text-text-secondary hover:bg-bg-tertiary hover:text-accent transition-all active:scale-90"
               >
                 <ChevronLeft className="h-4 w-4" />
               </button>
-              <span className="text-sm font-bold text-text-primary font-display">
+              <span className="text-xs sm:text-sm font-bold text-text-primary font-display">
                 {MONTHS[viewMonth]} {viewYear}
               </span>
               <button
                 type="button"
                 onClick={nextMonth}
-                className="flex h-7 w-7 items-center justify-center rounded-lg text-text-secondary hover:bg-bg-tertiary hover:text-accent transition-all"
+                className="flex h-8 w-8 items-center justify-center rounded-lg text-text-secondary hover:bg-bg-tertiary hover:text-accent transition-all active:scale-90"
               >
                 <ChevronRight className="h-4 w-4" />
               </button>
@@ -175,7 +168,7 @@ export function DatePicker({ value, onChange }: DatePickerProps) {
                     disabled={!current}
                     onClick={() => current && handleSelect(day)}
                     className={cn(
-                      "h-8 w-full rounded-lg text-xs font-medium transition-all duration-150",
+                      "h-9 sm:h-8 w-full rounded-lg text-xs font-medium transition-all duration-150 active:scale-90",
                       !current && "text-text-secondary/25 pointer-events-none",
                       current && !isSelected && !isToday && "text-text-primary hover:bg-bg-tertiary",
                       isToday && !isSelected && "text-accent font-bold bg-accent/5",
@@ -189,14 +182,14 @@ export function DatePicker({ value, onChange }: DatePickerProps) {
             </div>
 
             {/* Quick actions */}
-            <div className="flex gap-2 mt-3 pt-3 border-t border-border/30">
+            <div className="flex gap-2 mt-2 pt-2 border-t border-border/30">
               <button
                 type="button"
                 onClick={() => {
                   onChange(todayStr);
                   setOpen(false);
                 }}
-                className="flex-1 text-xs font-semibold text-accent bg-accent/5 hover:bg-accent/10 rounded-lg py-1.5 transition-colors"
+                className="flex-1 text-xs font-semibold text-accent bg-accent/5 hover:bg-accent/10 active:scale-95 rounded-lg py-2 transition-all"
               >
                 Today
               </button>
@@ -209,7 +202,7 @@ export function DatePicker({ value, onChange }: DatePickerProps) {
                   onChange(yStr);
                   setOpen(false);
                 }}
-                className="flex-1 text-xs font-semibold text-text-secondary bg-bg-tertiary hover:bg-border/50 rounded-lg py-1.5 transition-colors"
+                className="flex-1 text-xs font-semibold text-text-secondary bg-bg-tertiary hover:bg-border/50 active:scale-95 rounded-lg py-2 transition-all"
               >
                 Yesterday
               </button>

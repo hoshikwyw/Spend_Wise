@@ -39,31 +39,32 @@ export default function BudgetPage() {
   return (
     <div>
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-xl font-bold text-text-primary font-display">
+      <div className="flex items-center justify-between mb-4 sm:mb-6">
+        <h1 className="text-xl sm:text-2xl font-bold text-text-primary font-display flex items-center gap-2">
           Budget
+          <span className="text-lg">🎯</span>
         </h1>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           <button
             onClick={() => setMonthOffset((o) => o - 1)}
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-text-secondary hover:bg-bg-tertiary transition-colors"
+            className="flex h-9 w-9 items-center justify-center rounded-xl text-text-secondary hover:bg-bg-tertiary active:scale-90 transition-all"
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
-          <span className="text-sm font-medium text-text-primary min-w-[8rem] text-center">
+          <span className="text-xs sm:text-sm font-semibold text-text-primary min-w-[6rem] sm:min-w-[8rem] text-center font-display">
             {getMonthName(month)}
           </span>
           <button
             onClick={() => setMonthOffset((o) => o + 1)}
             disabled={monthOffset >= 0}
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-text-secondary hover:bg-bg-tertiary transition-colors disabled:opacity-30"
+            className="flex h-9 w-9 items-center justify-center rounded-xl text-text-secondary hover:bg-bg-tertiary active:scale-90 transition-all disabled:opacity-30"
           >
             <ChevronRight className="h-4 w-4" />
           </button>
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {/* Budget card */}
         <Card>
           {budgetAmount > 0 && !editing ? (
@@ -86,7 +87,7 @@ export default function BudgetPage() {
                 </button>
               </div>
 
-              <p className="text-3xl font-bold text-text-primary font-display mb-4">
+              <p className="text-2xl sm:text-3xl font-bold text-text-primary font-display mb-4">
                 {formatCurrency(budgetAmount)}
               </p>
 
@@ -121,22 +122,24 @@ export default function BudgetPage() {
                   {editing ? "Edit Budget" : "Set Monthly Budget"}
                 </span>
               </div>
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <Input
                   type="number"
-                  placeholder="e.g. 1000"
+                  placeholder="e.g. 500000"
                   value={editAmount}
                   onChange={(e) => setEditAmount(e.target.value)}
                   className="flex-1"
                 />
-                <Button onClick={handleSave} disabled={saving}>
-                  {saving ? "Saving..." : "Save"}
-                </Button>
-                {editing && (
-                  <Button variant="ghost" onClick={() => setEditing(false)}>
-                    Cancel
+                <div className="flex gap-2">
+                  <Button onClick={handleSave} disabled={saving} className="flex-1 sm:flex-none">
+                    {saving ? "Saving..." : "Save"}
                   </Button>
-                )}
+                  {editing && (
+                    <Button variant="ghost" onClick={() => setEditing(false)} className="flex-1 sm:flex-none">
+                      Cancel
+                    </Button>
+                  )}
+                </div>
               </div>
             </div>
           )}

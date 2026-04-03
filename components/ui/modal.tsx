@@ -28,7 +28,7 @@ export function Modal({ open, onClose, children, className, title }: ModalProps)
   return (
     <AnimatePresence>
       {open && (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -45,14 +45,21 @@ export function Modal({ open, onClose, children, className, title }: ModalProps)
             exit={{ y: "100%", opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
             className={cn(
-              "relative w-full sm:max-w-md bg-bg-secondary rounded-t-[2rem] sm:rounded-[var(--radius-card)] p-6 shadow-hover border border-border/50 z-10 overflow-visible",
+              "relative w-full sm:max-w-md bg-bg-secondary rounded-t-[2rem] sm:rounded-[var(--radius-card)] shadow-hover border border-border/50 z-10 overflow-visible",
+              "px-5 py-5 sm:p-6",
+              "max-h-[90vh] overflow-y-auto",
               className
             )}
           >
+            {/* Drag handle on mobile */}
+            <div className="flex justify-center mb-3 sm:hidden">
+              <div className="h-1 w-10 rounded-full bg-border/60" />
+            </div>
+
             {/* Header */}
             {title && (
-              <div className="flex items-center justify-between mb-5">
-                <h2 className="text-lg font-bold text-text-primary font-display">
+              <div className="flex items-center justify-between mb-4 sm:mb-5">
+                <h2 className="text-base sm:text-lg font-bold text-text-primary font-display">
                   {title}
                 </h2>
                 <button
@@ -61,13 +68,6 @@ export function Modal({ open, onClose, children, className, title }: ModalProps)
                 >
                   <X className="h-4 w-4" />
                 </button>
-              </div>
-            )}
-
-            {/* Drag handle on mobile */}
-            {!title && (
-              <div className="flex justify-center mb-4 sm:hidden">
-                <div className="h-1 w-10 rounded-full bg-border/60" />
               </div>
             )}
 

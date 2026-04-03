@@ -23,7 +23,7 @@ export function SpendingPieChart({ data, totalSpent }: SpendingPieChartProps) {
         <CardHeader>
           <CardTitle>Spending by Category</CardTitle>
         </CardHeader>
-        <div className="flex items-center justify-center h-48 text-sm text-text-secondary">
+        <div className="flex items-center justify-center h-32 sm:h-48 text-sm text-text-secondary">
           No spending data yet
         </div>
       </Card>
@@ -35,16 +35,18 @@ export function SpendingPieChart({ data, totalSpent }: SpendingPieChartProps) {
       <CardHeader>
         <CardTitle>Spending by Category</CardTitle>
       </CardHeader>
-      <div className="flex items-center gap-4">
-        <div className="relative w-40 h-40 shrink-0">
+
+      {/* Stacked on mobile, side-by-side on larger */}
+      <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+        <div className="relative w-32 h-32 sm:w-40 sm:h-40 shrink-0">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
                 data={data}
                 cx="50%"
                 cy="50%"
-                innerRadius={45}
-                outerRadius={70}
+                innerRadius={35}
+                outerRadius={55}
                 paddingAngle={3}
                 dataKey="total"
                 strokeWidth={0}
@@ -72,15 +74,15 @@ export function SpendingPieChart({ data, totalSpent }: SpendingPieChartProps) {
           </ResponsiveContainer>
           {/* Center text */}
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-[10px] text-text-secondary">Total</span>
-            <span className="text-sm font-bold text-text-primary">
+            <span className="text-[9px] sm:text-[10px] text-text-secondary">Total</span>
+            <span className="text-xs sm:text-sm font-bold text-text-primary">
               {formatCurrency(totalSpent)}
             </span>
           </div>
         </div>
 
         {/* Legend */}
-        <div className="flex flex-col gap-1.5 flex-1 min-w-0">
+        <div className="flex flex-col gap-1.5 w-full sm:flex-1 sm:min-w-0">
           {data.slice(0, 5).map((item) => (
             <div key={item.name} className="flex items-center gap-2">
               <div

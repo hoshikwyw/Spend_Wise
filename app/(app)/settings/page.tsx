@@ -20,11 +20,12 @@ export default function SettingsPage() {
 
   return (
     <div>
-      <h1 className="text-xl font-bold text-text-primary font-display mb-6">
+      <h1 className="text-xl sm:text-2xl font-bold text-text-primary font-display mb-4 sm:mb-6 flex items-center gap-2">
         Settings
+        <span className="text-lg">⚙️</span>
       </h1>
 
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {/* Profile */}
         <Card>
           <div className="flex items-center gap-3">

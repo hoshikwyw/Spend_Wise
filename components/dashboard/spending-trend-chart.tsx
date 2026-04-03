@@ -46,7 +46,7 @@ export function SpendingTrendChart({ expenses, month }: SpendingTrendChartProps)
       <CardHeader>
         <CardTitle>Spending Trend</CardTitle>
       </CardHeader>
-      <div className="h-48 -mx-2">
+      <div className="h-36 sm:h-48 -mx-2">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={cumulativeData}>
             <defs>

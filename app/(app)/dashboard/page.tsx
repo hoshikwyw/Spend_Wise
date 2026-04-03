@@ -48,20 +48,20 @@ export default function DashboardPage() {
       transition={{ duration: 0.4 }}
     >
       {/* Cute greeting */}
-      <div className="mb-6">
+      <div className="mb-4 sm:mb-6">
         <div className="flex items-center gap-2 mb-1">
-          <h1 className="text-2xl font-bold text-text-primary font-display">
+          <h1 className="text-xl sm:text-2xl font-bold text-text-primary font-display">
             {greeting.text}, {firstName}!
           </h1>
-          <span className="text-2xl animate-wiggle">{greeting.emoji}</span>
+          <span className="text-xl sm:text-2xl animate-wiggle">{greeting.emoji}</span>
         </div>
-        <p className="text-sm text-text-secondary flex items-center gap-1.5">
+        <p className="text-xs sm:text-sm text-text-secondary flex items-center gap-1.5">
           <Sparkles className="h-3.5 w-3.5 text-accent" />
           Here&apos;s your spending overview ~
         </p>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {/* Summary card */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -76,7 +76,7 @@ export default function DashboardPage() {
 
         {/* Charts row */}
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4"
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
