@@ -4,12 +4,31 @@ import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { Expense, Category } from "@/lib/types";
 
-export function useExpenses(month?: string) {
+interface DateRange {
+  start: string;
+  end: string;
+}
+
+export function useExpenses(range?: DateRange | string) {
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
 
   const supabase = createClient();
+
+  // Normalize: if string (legacy month), convert to range
+  const dateRange: DateRange | undefined =
+    typeof range === "string"
+      ? (() => {
+          const [y, m] = range.split("-").map(Number);
+          return {
+            start: range,
+            end: new Date(y, m, 1).toISOString().split("T")[0],
+          };
+        })()
+      : range;
+
+  const rangeKey = dateRange ? `${dateRange.start}_${dateRange.end}` : "all";
 
   const fetchCategories = useCallback(async () => {
     const { data } = await supabase
@@ -27,17 +46,15 @@ export function useExpenses(month?: string) {
       .order("expense_date", { ascending: false })
       .order("created_at", { ascending: false });
 
-    if (month) {
-      const start = month; // e.g. "2026-04-01"
-      const [y, m] = month.split("-").map(Number);
-      const end = new Date(y, m, 1).toISOString().split("T")[0];
-      query = query.gte("expense_date", start).lt("expense_date", end);
+    if (dateRange) {
+      query = query.gte("expense_date", dateRange.start).lt("expense_date", dateRange.end);
     }
 
     const { data } = await query;
     if (data) setExpenses(data);
     setLoading(false);
-  }, [supabase, month]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [supabase, rangeKey]);
 
   useEffect(() => {
     fetchCategories();

@@ -77,3 +77,52 @@ export function getMonthName(dateStr: string): string {
   const date = new Date(dateStr + "T00:00:00");
   return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
 }
+
+export function getDateLabel(dateStr: string): string {
+  const date = new Date(dateStr + "T00:00:00");
+  return date.toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+export function getYearStart(date: Date = new Date()): string {
+  return `${date.getFullYear()}-01-01`;
+}
+
+export function getDateRange(
+  filterType: "daily" | "monthly" | "yearly",
+  offset: number
+): { start: string; end: string; label: string } {
+  const now = new Date();
+
+  if (filterType === "daily") {
+    const target = new Date(now.getFullYear(), now.getMonth(), now.getDate() + offset);
+    const dateStr = target.toISOString().split("T")[0];
+    const nextDay = new Date(target);
+    nextDay.setDate(nextDay.getDate() + 1);
+    return {
+      start: dateStr,
+      end: nextDay.toISOString().split("T")[0],
+      label: getDateLabel(dateStr),
+    };
+  }
+
+  if (filterType === "monthly") {
+    const target = new Date(now.getFullYear(), now.getMonth() + offset, 1);
+    const start = getMonthStart(target);
+    const [y, m] = start.split("-").map(Number);
+    const end = new Date(y, m, 1).toISOString().split("T")[0];
+    return { start, end, label: getMonthName(start) };
+  }
+
+  // yearly
+  const year = now.getFullYear() + offset;
+  return {
+    start: `${year}-01-01`,
+    end: `${year + 1}-01-01`,
+    label: String(year),
+  };
+}
