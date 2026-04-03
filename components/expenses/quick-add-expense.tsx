@@ -55,14 +55,14 @@ export function QuickAddExpense({ open, onClose }: QuickAddExpenseProps) {
         {/* Amount Input */}
         <div className="text-center">
           <div className="flex items-center justify-center gap-1">
-            <span className="text-2xl font-bold text-text-secondary">$</span>
+            <span className="text-xl font-bold text-text-secondary">MMK</span>
             <input
               ref={amountRef}
               type="number"
-              inputMode="decimal"
-              step="0.01"
+              inputMode="numeric"
+              step="1"
               min="0"
-              placeholder="0.00"
+              placeholder="0"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               className="text-4xl font-bold text-text-primary bg-transparent outline-none text-center w-48 placeholder:text-text-secondary/30 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"

@@ -65,12 +65,8 @@ export function deriveAccentShades(hex: string): {
   };
 }
 
-export function formatCurrency(amount: number, currency: string = "USD"): string {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency,
-    minimumFractionDigits: 2,
-  }).format(amount);
+export function formatCurrency(amount: number): string {
+  return `${new Intl.NumberFormat("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(amount)} MMK`;
 }
 
 export function getMonthStart(date: Date = new Date()): string {

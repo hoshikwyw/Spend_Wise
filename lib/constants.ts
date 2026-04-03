@@ -21,4 +21,4 @@ export const ACCENT_PRESETS = [
 ] as const;
 
 export const DEFAULT_ACCENT = "#8B5CF6";
-export const DEFAULT_CURRENCY = "USD";
+export const DEFAULT_CURRENCY = "MMK";

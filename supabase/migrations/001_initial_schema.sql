@@ -73,7 +73,7 @@ create table public.user_preferences (
   user_id uuid primary key references auth.users(id) on delete cascade,
   theme text not null default 'system',
   accent_color text not null default '#8B5CF6',
-  currency text not null default 'USD',
+  currency text not null default 'MMK',
   updated_at timestamptz default now()
 );
 
