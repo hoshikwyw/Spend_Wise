@@ -4,9 +4,8 @@ import { createClient } from "@/lib/supabase/client";
 import { Wallet, Sparkles, Heart } from "lucide-react";
 
 export default function LoginPage() {
-  const supabase = createClient();
-
   const handleGoogleSignIn = async () => {
+    const supabase = createClient();
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
