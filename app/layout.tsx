@@ -14,8 +14,11 @@ export const metadata: Metadata = {
     "Track your spending, reach your goals. Simple & cute expense tracking designed for you.",
   manifest: "/manifest.json",
   icons: {
-    icon: { url: "/icons/favicon.svg", type: "image/svg+xml" },
-    apple: "/icons/icon-192.svg",
+    icon: [
+      { url: "/icons/favicon.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/icons/apple-touch-icon.png",
   },
   appleWebApp: {
     capable: true,
